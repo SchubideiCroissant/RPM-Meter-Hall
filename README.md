@@ -18,8 +18,8 @@ Dieses Projekt verwendet einen **Raspberry Pi Pico W**, um die Umdrehungen eines
 ---------------------------------------- VCC
         |                            | 
         |                            |
-        ------------             -----------
-        |    VC    |              |   VCC   |
+        ------------              -----------
+        |    VCC   |              |   VCC   |
         |        26|------------- | AO      |         
         |    [μC]  |              | [KY.024]|
 ------- |15      0 |------        |         |
