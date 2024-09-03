@@ -14,29 +14,48 @@ Dieses Projekt verwendet einen **Raspberry Pi Pico W**, um die Umdrehungen eines
 - **Kondensator zur Entprellung des Schalters** (10 µF, optional)
 
 ## Schaltplan
+```
+---------------------------------------- VCC
+        |                            | 
+        |                            |
+        ------------             -----------
+        |    VC    |              |   VCC   |
+        |        26|------------- | AO      |         
+        |    [μC]  |              | [KY.024]|
+------- |15      0 |------        |         |
+|    |  |   GND    |     |        |    GND  |      
+|    |  ------------     |        -----------
+\    |       |           |             |
+ \   |	     |           |             |
+|  -----     |	         |	       |
+|  [10yF]    |           |             |
+|  -----     |           |             |
+|    |       |         [LED]           |
+|    |       |           |             |
+|    |       |           |             |
+|    |       |           |             |
+--------------------------------------------- GND
 
-### Hall-Effekt-Sensor (KY-024) Anschluss
+```
 
-- **VCC** des Sensors an **3.3V** des Raspberry Pi Pico
-- **GND** des Sensors an **GND** des Raspberry Pi Pico
-- **Signal** des Sensors an **GPIO26** des Raspberry Pi Pico
+### Legende:
+- **[μC]**: Mikrocontroller (z. B. Raspberry Pi Pico)
+- **26**: ADC-Pin für den Hall-Sensor
+- **15**: Pin für den Schalter
+- **0**: Pin für die LED
+- **KY-024**: Hall-Effekt-Sensor
+- **VCC**: Versorgungsspannung
+- **GND**: Masse (Ground)
+- **[10μF]**: Kondensator zur Entprellung des Schalters
+- **[LED]**: Leuchtdiode
 
-### Schalter Anschluss
-
-- Ein Anschluss des Schalters an **GPIO15** des Raspberry Pi Pico
-- Der andere Anschluss des Schalters an **GND** des Raspberry Pi Pico
-
-### LED Anschluss
-
-- **Anode** der LED an **GPIO0** des Raspberry Pi Pico
-- **Kathode** der LED an **GND** des Raspberry Pi Pico
-
-### Optional: Kondensator zur Entprellung des Schalters
-
-- Ein Anschluss des Kondensators an **GPIO15**
-- Der andere Anschluss des Kondensators an **GND**
-
-## Hall-Effekt-Sensor (KY-024)
+### Beschreibung:
+- **VCC**: Versorgungsspannung wird an den Mikrocontroller und den Hall-Sensor angelegt.
+- **GND**: Gemeinsame Masseverbindung.
+- **Hall-Sensor**: Der Hall-Sensor ist an den ADC-Pin des Mikrocontrollers angeschlossen und gibt ein Signal entsprechend dem Magnetfeld aus.
+- **Schalter**: Der Schalter ist an einen Pin des Mikrocontrollers angeschlossen und beeinflusst den Zustand der LED.
+- **LED**: Die LED wird durch den Mikrocontroller gesteuert, um den Zustand der Messung anzuzeigen.
+- **Kondensator**: Der Kondensator ist parallel zum Schalter geschaltet, um Störungen durch Prellen zu reduzieren.
 
 Der **Hall-Effekt-Sensor KY-024** misst das Magnetfeld in seiner Umgebung und gibt eine analoge Spannung aus, die proportional zur Stärke des Magnetfelds ist. Die typischen Eigenschaften des Sensors sind:
 
